@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Node, { NodeProps } from './Node';
+
+type GridType = NodeProps[][];
 
 function Grid() {
-    const [grid, setGrid] = useState<any[]>([]);
+    const [grid, setGrid] = useState<GridType | []>([]);
 
     useEffect(() => {
         const newGrid = [];
@@ -16,7 +19,17 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
-    return <div></div>;
+    return (
+        <div>
+            {grid.map((row, index) => (
+                <div key={index}>
+                    {row.map((node, index) => (
+                        <Node row={node.row} column={node.column} key={index} />
+                    ))}
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export default Grid;
