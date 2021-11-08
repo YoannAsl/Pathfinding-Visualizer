@@ -9,7 +9,7 @@ interface NodeType {
     isFinish: boolean;
 }
 
-type GridType = NodeType[][];
+type GridType = NodeType[][] | [];
 
 const START_NODE_ROW = 8;
 const START_NODE_COLUMN = 5;
@@ -26,7 +26,7 @@ function createNode(row: number, column: number) {
 }
 
 function Grid() {
-    const [grid, setGrid] = useState<GridType | []>([]);
+    const [grid, setGrid] = useState<GridType>([]);
 
     useEffect(() => {
         const newGrid = [];
