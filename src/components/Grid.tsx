@@ -2,12 +2,26 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Node from './Node';
 
-type GridType = NodeProps[][];
+interface NodeType {
+    row: number;
+    column: number;
+    isStart: boolean;
+    isFinish: boolean;
+}
+
+type GridType = NodeType[][];
+
+const START_NODE_ROW = 8;
+const START_NODE_COLUMN = 5;
+const FINISH_NODE_ROW = 13;
+const FINISH_NODE_COLUMN = 34;
 
 function createNode(row: number, column: number) {
     return {
         row,
         column,
+        isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
+        isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
     };
 }
 
@@ -32,7 +46,13 @@ function Grid() {
             {grid.map((row, index) => (
                 <Row key={index}>
                     {row.map((node, index) => (
-                        <Node row={node.row} column={node.column} key={index} />
+                        <Node
+                            row={node.row}
+                            column={node.column}
+                            isStart={node.isStart}
+                            isFinish={node.isFinish}
+                            key={index}
+                        />
                     ))}
                 </Row>
             ))}
