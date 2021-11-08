@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Node, { NodeProps } from './Node';
 
 type GridType = NodeProps[][];
@@ -20,16 +21,22 @@ function Grid() {
     }, []);
 
     return (
-        <div>
+        <Container>
             {grid.map((row, index) => (
-                <div key={index}>
+                <Row key={index}>
                     {row.map((node, index) => (
                         <Node row={node.row} column={node.column} key={index} />
                     ))}
-                </div>
+                </Row>
             ))}
-        </div>
+        </Container>
     );
 }
+
+const Container = styled.main``;
+
+const Row = styled.div`
+    display: flex;
+`;
 
 export default Grid;

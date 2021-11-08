@@ -11,9 +11,11 @@ function Node({ row, column }: NodeProps) {
 }
 
 const Container = styled.div`
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     border: 1px solid black;
+    box-sizing: border-box;
+    margin: 0 -1px -1px 0;
 `;
 
 export default Node;
