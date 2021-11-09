@@ -7,6 +7,7 @@ interface NodeType {
     column: number;
     isStart: boolean;
     isFinish: boolean;
+    isVisited: boolean;
 }
 
 type GridType = NodeType[][] | [];
@@ -22,6 +23,7 @@ function createNode(row: number, column: number) {
         column,
         isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
         isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
+        isVisited: false,
     };
 }
 
@@ -51,6 +53,7 @@ function Grid() {
                             column={node.column}
                             isStart={node.isStart}
                             isFinish={node.isFinish}
+                            isVisited={node.isVisited}
                             key={index}
                         />
                     ))}

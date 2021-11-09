@@ -6,20 +6,31 @@ interface NodeProps {
     column: number;
     isStart: boolean;
     isFinish: boolean;
+    isVisited: boolean;
 }
 
-function Node({ row, column, isStart, isFinish }: NodeProps) {
-    return <Container isStart={isStart} isFinish={isFinish} />;
+function Node({ row, column, isStart, isFinish, isVisited }: NodeProps) {
+    return (
+        <Container
+            isStart={isStart}
+            isFinish={isFinish}
+            isVisited={isVisited}
+        />
+    );
 }
 
-const Container = styled.div<{ isStart: boolean; isFinish: boolean }>`
+const Container = styled.div<{
+    isStart: boolean;
+    isFinish: boolean;
+    isVisited: boolean;
+}>`
     height: 25px;
     width: 25px;
     border: 1px solid black;
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
-    background-color: ${({ isStart, isFinish }) =>
-        isStart ? 'green' : isFinish ? 'red' : 'white'};
+    background-color: ${({ isStart, isFinish, isVisited }) =>
+        isStart ? 'green' : isFinish ? 'red' : isVisited ? 'blue' : 'white'};
 `;
 
 export default Node;
