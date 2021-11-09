@@ -10,6 +10,7 @@ export interface NodeType {
     isFinish: boolean;
     isVisited: boolean;
     distance: number;
+    previousNode: NodeType | null;
 }
 
 export type GridType = NodeType[][] | [];
@@ -30,6 +31,7 @@ function createNode(row: number, column: number) {
             row === START_NODE_ROW && column === START_NODE_COLUMN
                 ? 0
                 : Infinity,
+        previousNode: null,
     };
 }
 

@@ -7,6 +7,7 @@ function dijkstra(grid: GridType, startNode: NodeType, finishNode: NodeType) {
     while (unvisitedNodes.length > 0) {
         unvisitedNodes.sort((a, b) => a.distance - b.distance);
         const currentNode = unvisitedNodes.shift();
+        visitedNodes.push(currentNode);
         currentNode!.isVisited = true;
         // console.log(unvisitedNodes);
 
@@ -19,11 +20,12 @@ function updateNeighbourDistance(node: NodeType, grid: GridType) {
     for (const neighbour of unvisitedNeighbours) {
         // console.log(neighbour);
         neighbour.distance = node.distance + 1;
+        neighbour.previousNode = node;
     }
 }
 
 function getUnvisitedNeighbours(node: NodeType, grid: GridType) {
-    const neighbours: NodeType[] = [];
+    const neighbours = [];
     const { row, column } = node;
 
     if (row < grid.length - 1) neighbours.push(grid[row + 1][column]);
