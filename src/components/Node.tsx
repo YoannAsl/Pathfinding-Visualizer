@@ -8,6 +8,7 @@ interface NodeProps {
     isFinish: boolean;
     isVisited: boolean;
     visitNode: (row: number, column: number) => void;
+    distance: number;
 }
 
 function Node({
@@ -16,8 +17,8 @@ function Node({
     isStart,
     isFinish,
     isVisited,
-    visitNode,
-}: NodeProps) {
+}: // visitNode,
+NodeProps) {
     return (
         <Container
             isStart={isStart}
@@ -25,6 +26,9 @@ function Node({
             isVisited={isVisited}
             onClick={() => visitNode(row, column)}
         />
+        >
+            {distance}
+        </Container>
     );
 }
 
@@ -39,7 +43,13 @@ const Container = styled.div<{
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
     background-color: ${({ isStart, isFinish, isVisited }) =>
-        isStart ? 'green' : isFinish ? 'red' : isVisited ? 'blue' : 'white'};
+        isStart
+            ? 'green'
+            : isFinish
+            ? 'red'
+            : isVisited
+            ? 'lightgrey'
+            : 'white'};
 `;
 
 export default Node;

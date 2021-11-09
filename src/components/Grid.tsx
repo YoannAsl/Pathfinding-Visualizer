@@ -24,6 +24,10 @@ function createNode(row: number, column: number) {
         isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
         isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
         isVisited: false,
+        distance:
+            row === START_NODE_ROW && column === START_NODE_COLUMN
+                ? 0
+                : Infinity,
     };
 }
 
@@ -62,6 +66,7 @@ function Grid() {
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
                             visitNode={visitNode}
+                            distance={node.distance}
                             key={index}
                         />
                     ))}
