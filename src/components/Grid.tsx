@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Node from './Node';
+import dijkstra from '../algorithms/dijkstra';
 
 export interface NodeType {
     row: number;
@@ -34,6 +35,14 @@ function createNode(row: number, column: number) {
 
 function Grid() {
     const [grid, setGrid] = useState<GridType>([]);
+
+    if (grid.length > 0) {
+        dijkstra(
+            grid,
+            grid[START_NODE_ROW][START_NODE_COLUMN],
+            grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+        );
+    }
 
     useEffect(() => {
         const newGrid = [];
