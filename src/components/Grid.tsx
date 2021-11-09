@@ -43,6 +43,13 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
+    function visitNode(row: number, column: number) {
+        const copiedGrid = [...grid];
+        const node = copiedGrid[row][column];
+        node.isVisited = !node.isVisited;
+        setGrid(copiedGrid);
+    }
+
     return (
         <Container>
             {grid.map((row, index) => (
@@ -54,6 +61,7 @@ function Grid() {
                             isStart={node.isStart}
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
+                            visitNode={visitNode}
                             key={index}
                         />
                     ))}

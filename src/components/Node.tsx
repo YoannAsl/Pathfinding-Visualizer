@@ -7,14 +7,23 @@ interface NodeProps {
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
+    visitNode: (row: number, column: number) => void;
 }
 
-function Node({ row, column, isStart, isFinish, isVisited }: NodeProps) {
+function Node({
+    row,
+    column,
+    isStart,
+    isFinish,
+    isVisited,
+    visitNode,
+}: NodeProps) {
     return (
         <Container
             isStart={isStart}
             isFinish={isFinish}
             isVisited={isVisited}
+            onClick={() => visitNode(row, column)}
         />
     );
 }
