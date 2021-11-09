@@ -7,8 +7,8 @@ interface NodeProps {
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
-    visitNode: (row: number, column: number) => void;
     distance: number;
+    // visitNode: (row: number, column: number) => void;
 }
 
 function Node({
@@ -17,6 +17,7 @@ function Node({
     isStart,
     isFinish,
     isVisited,
+    distance,
 }: // visitNode,
 NodeProps) {
     return (
@@ -24,8 +25,7 @@ NodeProps) {
             isStart={isStart}
             isFinish={isFinish}
             isVisited={isVisited}
-            onClick={() => visitNode(row, column)}
-        />
+            // onClick={() => visitNode(row, column)}
         >
             {distance}
         </Container>

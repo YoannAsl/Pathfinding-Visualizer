@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Node from './Node';
 
-interface NodeType {
+export interface NodeType {
     row: number;
     column: number;
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
+    distance: number;
 }
 
-type GridType = NodeType[][] | [];
+export type GridType = NodeType[][] | [];
 
 const START_NODE_ROW = 8;
 const START_NODE_COLUMN = 5;
@@ -47,12 +48,12 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
-    function visitNode(row: number, column: number) {
-        const copiedGrid = [...grid];
-        const node = copiedGrid[row][column];
-        node.isVisited = !node.isVisited;
-        setGrid(copiedGrid);
-    }
+    // function visitNode(row: number, column: number) {
+    //     const copiedGrid = [...grid];
+    //     const node = copiedGrid[row][column];
+    //     node.isVisited = !node.isVisited;
+    //     setGrid(copiedGrid);
+    // }
 
     return (
         <Container>
@@ -65,7 +66,7 @@ function Grid() {
                             isStart={node.isStart}
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
-                            visitNode={visitNode}
+                            // visitNode={visitNode}
                             distance={node.distance}
                             key={index}
                         />
