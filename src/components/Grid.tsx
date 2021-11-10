@@ -38,14 +38,6 @@ function createNode(row: number, column: number) {
 function Grid() {
     const [grid, setGrid] = useState<GridType>([]);
 
-    if (grid.length > 0) {
-        dijkstra(
-            grid,
-            grid[START_NODE_ROW][START_NODE_COLUMN],
-            grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
-        );
-    }
-
     useEffect(() => {
         const newGrid = [];
         for (let row = 0; row < 25; row++) {
@@ -84,6 +76,17 @@ function Grid() {
                     ))}
                 </Row>
             ))}
+            <button
+                onClick={() =>
+                    dijkstra(
+                        grid,
+                        grid[START_NODE_ROW][START_NODE_COLUMN],
+                        grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+                    )
+                }
+            >
+                Visualize Algorithm
+            </button>
         </Container>
     );
 }
