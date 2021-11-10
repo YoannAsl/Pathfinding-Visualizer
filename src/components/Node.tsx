@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import './Node.css';
 
 interface NodeProps {
     row: number;
@@ -17,25 +17,5 @@ function Node({ row, column, isStart, isFinish, isVisited }: NodeProps) {
         />
     );
 }
-
-const Container = styled.div<{
-    isStart: boolean;
-    isFinish: boolean;
-    isVisited: boolean;
-}>`
-    height: 30px;
-    width: 30px;
-    border: 1px solid black;
-    box-sizing: border-box;
-    margin: 0 -1px -1px 0;
-    background-color: ${({ isStart, isFinish, isVisited }) =>
-        isStart
-            ? 'green'
-            : isFinish
-            ? 'red'
-            : isVisited
-            ? 'lightgrey'
-            : 'white'};
-`;
 
 export default Node;

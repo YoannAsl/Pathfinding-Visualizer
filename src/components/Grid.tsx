@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Node from './Node';
 import dijkstra from '../algorithms/dijkstra';
+import './Grid.css';
 
 export interface NodeType {
     row: number;
@@ -72,7 +72,6 @@ function Grid() {
     return (
         <main>
             {grid.map((row, index) => (
-                <Row key={index}>
                 <div className='row' key={index}>
                     {row.map((node, index) => (
                         <Node
@@ -86,16 +85,11 @@ function Grid() {
                     ))}
                 </div>
             ))}
-            <button
             <button onClick={() => animateAlgorithm()}>
                 Visualize Algorithm
             </button>
         </main>
     );
 }
-
-const Row = styled.div`
-    display: flex;
-`;
 
 export default Grid;
