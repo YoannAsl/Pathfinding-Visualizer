@@ -27,7 +27,7 @@ NodeProps) {
             isVisited={isVisited}
             // onClick={() => visitNode(row, column)}
         >
-            {distance}
+            {distance === Infinity ? '∞' : distance}
         </Container>
     );
 }
@@ -37,8 +37,8 @@ const Container = styled.div<{
     isFinish: boolean;
     isVisited: boolean;
 }>`
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     border: 1px solid black;
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
