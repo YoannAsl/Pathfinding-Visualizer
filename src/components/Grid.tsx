@@ -51,17 +51,29 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
-    // function visitNode(row: number, column: number) {
-    //     const copiedGrid = [...grid];
-    //     const node = copiedGrid[row][column];
-    //     node.isVisited = !node.isVisited;
-    //     setGrid(copiedGrid);
-    // }
+    function animateAlgorithm() {
+        const visitedNodes = dijkstra(
+            grid,
+            grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+        );
+
+        for (let i = 0; i < visitedNodes!.length; i++) {
+            setTimeout(() => {
+                const node = visitedNodes![i];
+                if (!node?.isStart && !node?.isFinish) {
+                    document.getElementById(
+                        `${node?.row}-${node?.column}`
+                    )!.className = 'node visited';
+                }
+            }, 10 * i);
+        }
+    }
 
     return (
-        <Container>
+        <main>
             {grid.map((row, index) => (
                 <Row key={index}>
+                <div className='row' key={index}>
                     {row.map((node, index) => (
                         <Node
                             row={node.row}
@@ -69,29 +81,18 @@ function Grid() {
                             isStart={node.isStart}
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
-                            // visitNode={visitNode}
-                            distance={node.distance}
                             key={index}
                         />
                     ))}
-                </Row>
+                </div>
             ))}
             <button
-                onClick={() =>
-                    dijkstra(
-                        grid,
-                        grid[START_NODE_ROW][START_NODE_COLUMN],
-                        grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
-                    )
-                }
-            >
+            <button onClick={() => animateAlgorithm()}>
                 Visualize Algorithm
             </button>
-        </Container>
+        </main>
     );
 }
-
-const Container = styled.main``;
 
 const Row = styled.div`
     display: flex;

@@ -1,24 +1,23 @@
 import { GridType, NodeType } from '../components/Grid';
 
-function dijkstra(grid: GridType, startNode: NodeType, finishNode: NodeType) {
+function dijkstra(grid: GridType, finishNode: NodeType) {
     const unvisitedNodes = getAllNodes(grid);
     const visitedNodes = [];
-
     while (unvisitedNodes.length > 0) {
         unvisitedNodes.sort((a, b) => a.distance - b.distance);
-        const currentNode = unvisitedNodes.shift();
-        visitedNodes.push(currentNode);
-        currentNode!.isVisited = true;
-        // console.log(unvisitedNodes);
 
-        updateNeighbourDistance(currentNode!, grid);
+        const closestNode = unvisitedNodes.shift();
+        visitedNodes.push(closestNode);
+        closestNode!.isVisited = true;
+
+        if (closestNode === finishNode) return visitedNodes;
+        updateNeighbourDistance(closestNode!, grid);
     }
 }
 
 function updateNeighbourDistance(node: NodeType, grid: GridType) {
     const unvisitedNeighbours = getUnvisitedNeighbours(node, grid);
     for (const neighbour of unvisitedNeighbours) {
-        // console.log(neighbour);
         neighbour.distance = node.distance + 1;
         neighbour.previousNode = node;
     }

@@ -7,28 +7,14 @@ interface NodeProps {
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
-    distance: number;
-    // visitNode: (row: number, column: number) => void;
 }
 
-function Node({
-    row,
-    column,
-    isStart,
-    isFinish,
-    isVisited,
-    distance,
-}: // visitNode,
-NodeProps) {
+function Node({ row, column, isStart, isFinish, isVisited }: NodeProps) {
     return (
-        <Container
-            isStart={isStart}
-            isFinish={isFinish}
-            isVisited={isVisited}
-            // onClick={() => visitNode(row, column)}
-        >
-            {distance === Infinity ? '∞' : distance}
-        </Container>
+        <div
+            id={`${row}-${column}`}
+            className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
+        />
     );
 }
 
