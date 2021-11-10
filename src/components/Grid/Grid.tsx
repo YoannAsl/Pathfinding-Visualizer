@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Node from './Node';
-import dijkstra from '../algorithms/dijkstra';
+import Node from '../Node/Node';
+import dijkstra from '../../algorithms/dijkstra';
 import './Grid.css';
 
 export interface NodeType {

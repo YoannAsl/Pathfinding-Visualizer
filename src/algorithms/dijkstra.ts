@@ -1,4 +1,4 @@
-import { GridType, NodeType } from '../components/Grid';
+import { GridType, NodeType } from '../components/Grid/Grid';
 
 function dijkstra(grid: GridType, finishNode: NodeType) {
     const unvisitedNodes = getAllNodes(grid);
@@ -32,7 +32,6 @@ function getUnvisitedNeighbours(node: NodeType, grid: GridType) {
     if (column < grid[0].length - 1) neighbours.push(grid[row][column + 1]);
     if (column > 0) neighbours.push(grid[row][column - 1]);
 
-    // console.log(neighbours.filter((neighbour) => !neighbour.isVisited));
     return neighbours.filter((neighbour) => !neighbour.isVisited);
 }
 
