@@ -8,6 +8,9 @@ function dijkstra(grid: GridType, finishNode: NodeType) {
 
         const closestNode = unvisitedNodes.shift();
         if (closestNode?.isWall) continue;
+
+        if (closestNode?.distance === Infinity) return visitedNodes;
+
         closestNode!.isVisited = true;
         visitedNodes.push(closestNode);
 
