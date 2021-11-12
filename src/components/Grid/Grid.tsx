@@ -39,6 +39,7 @@ function createNode(row: number, column: number) {
 
 function Grid() {
     const [grid, setGrid] = useState<GridType>([]);
+    const [isMousePressed, setIsMousePressed] = useState(false);
 
     useEffect(() => {
         const newGrid = [];
@@ -54,16 +55,19 @@ function Grid() {
     }, []);
 
     function toggleWall(row: number, column: number) {
-        const newGrid = [...grid];
-        const node = newGrid[row][column];
-        node.isWall = !node.isWall;
+        if (isMousePressed) {
+            const newGrid = [...grid];
+            const node = newGrid[row][column];
+            node.isWall = !node.isWall;
 
-        if (!node.isStart && !node.isFinish) {
-            // This is not great, I am looking for another way
-            document.getElementById(`${node?.row}-${node?.column}`)!.className =
-                node.isWall ? 'node wall' : 'node';
+            if (!node.isStart && !node.isFinish) {
+                // This is not great, I am looking for another way
+                document.getElementById(
+                    `${node?.row}-${node?.column}`
+                )!.className = node.isWall ? 'node wall' : 'node';
+            }
+            setGrid(newGrid);
         }
-        setGrid(newGrid);
     }
 
     function animateAlgorithm() {
@@ -98,6 +102,7 @@ function Grid() {
                             isVisited={node.isVisited}
                             isWall={node.isWall}
                             toggleWall={toggleWall}
+                            setIsMousePressed={setIsMousePressed}
                             key={index}
                         />
                     ))}
