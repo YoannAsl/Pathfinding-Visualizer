@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Node from '../Node/Node';
-import dijkstra from '../../algorithms/dijkstra';
+import dijkstra, { getShortestPath } from '../../algorithms/dijkstra';
 import './Grid.css';
 
 export interface NodeType {
@@ -77,7 +77,13 @@ function Grid() {
             grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
         );
 
-        for (let i = 0; i < visitedNodes!.length; i++) {
+        for (let i = 0; i <= visitedNodes!.length; i++) {
+            if (i === visitedNodes!.length) {
+                setTimeout(() => {
+                    animateShortest();
+                }, 5 * i);
+                return;
+            }
             setTimeout(() => {
                 const node = visitedNodes![i];
                 if (!node?.isStart && !node?.isFinish) {
@@ -86,7 +92,24 @@ function Grid() {
                         `${node?.row}-${node?.column}`
                     )!.className = 'node visited';
                 }
-            }, 10 * i);
+            }, 5 * i);
+        }
+    }
+
+    function animateShortest() {
+        const shortestPath = getShortestPath(
+            grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+        );
+        for (let i = 0; i < shortestPath!.length; i++) {
+            setTimeout(() => {
+                const node = shortestPath![i];
+                if (!node?.isStart && !node?.isFinish) {
+                    // This is not great, I am looking for another way
+                    document.getElementById(
+                        `${node?.row}-${node?.column}`
+                    )!.className = 'node shortest';
+                }
+            }, 30 * i);
         }
     }
 

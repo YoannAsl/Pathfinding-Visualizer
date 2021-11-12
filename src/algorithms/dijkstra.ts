@@ -46,4 +46,14 @@ function getAllNodes(grid: GridType) {
     return nodes;
 }
 
+export function getShortestPath(finishNode: NodeType) {
+    let node = finishNode;
+    const shortestPath = [];
+    while (node.previousNode !== null) {
+        shortestPath.push(node);
+        node = node.previousNode;
+    }
+    return shortestPath;
+}
+
 export default dijkstra;
