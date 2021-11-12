@@ -53,7 +53,7 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
-    function createWall(row: number, column: number) {
+    function toggleWall(row: number, column: number) {
         const newGrid = [...grid];
         const node = newGrid[row][column];
         node.isWall = !node.isWall;
@@ -97,7 +97,7 @@ function Grid() {
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
                             isWall={node.isWall}
-                            createWall={createWall}
+                            toggleWall={toggleWall}
                             key={index}
                         />
                     ))}

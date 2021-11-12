@@ -8,7 +8,7 @@ interface NodeProps {
     isFinish: boolean;
     isVisited: boolean;
     isWall: boolean;
-    createWall: (row: number, column: number) => void;
+    toggleWall: (row: number, column: number) => void;
 }
 
 function Node({
@@ -18,13 +18,13 @@ function Node({
     isFinish,
     isVisited,
     isWall,
-    createWall,
+    toggleWall,
 }: NodeProps) {
     return (
         <div
             id={`${row}-${column}`}
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
-            onMouseDown={() => createWall(row, column)}
+            onMouseDown={() => toggleWall(row, column)}
         />
     );
 }
