@@ -6,8 +6,7 @@ interface NodeProps {
     column: number;
     isStart: boolean;
     isFinish: boolean;
-    isVisited: boolean;
-    isWall: boolean;
+    onMouseEnter: (row: number, column: number) => void;
     toggleWall: (row: number, column: number) => void;
     setIsMousePressed: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -17,8 +16,7 @@ function Node({
     column,
     isStart,
     isFinish,
-    isVisited,
-    isWall,
+    onMouseEnter,
     toggleWall,
     setIsMousePressed,
 }: NodeProps) {
@@ -32,7 +30,7 @@ function Node({
             id={`${row}-${column}`}
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
             onMouseDown={() => onMouseDown()}
-            onMouseEnter={() => toggleWall(row, column)}
+            onMouseEnter={() => onMouseEnter(row, column)}
             onMouseUp={() => setIsMousePressed(false)}
         />
     );

@@ -54,20 +54,21 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
-    function toggleWall(row: number, column: number) {
-        if (isMousePressed) {
-            const newGrid = [...grid];
-            const node = newGrid[row][column];
-            node.isWall = !node.isWall;
+    function onMouseEnter(row: number, column: number) {
+        if (isMousePressed) toggleWall(row, column);
+    }
 
-            if (!node.isStart && !node.isFinish) {
-                // This is not great, I am looking for another way
-                document.getElementById(
-                    `${node?.row}-${node?.column}`
-                )!.className = node.isWall ? 'node wall' : 'node';
-            }
-            setGrid(newGrid);
+    function toggleWall(row: number, column: number) {
+        const newGrid = [...grid];
+        const node = newGrid[row][column];
+        node.isWall = !node.isWall;
+
+        if (!node.isStart && !node.isFinish) {
+            // This is not great, I am looking for another way
+            document.getElementById(`${node?.row}-${node?.column}`)!.className =
+                node.isWall ? 'node wall' : 'node';
         }
+        setGrid(newGrid);
     }
 
     function animateAlgorithm() {
@@ -99,8 +100,7 @@ function Grid() {
                             column={node.column}
                             isStart={node.isStart}
                             isFinish={node.isFinish}
-                            isVisited={node.isVisited}
-                            isWall={node.isWall}
+                            onMouseEnter={onMouseEnter}
                             toggleWall={toggleWall}
                             setIsMousePressed={setIsMousePressed}
                             key={index}
