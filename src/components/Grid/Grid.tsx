@@ -9,6 +9,7 @@ export interface NodeType {
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
+    isWall: boolean;
     distance: number;
     previousNode: NodeType | null;
 }
@@ -27,6 +28,7 @@ function createNode(row: number, column: number) {
         isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
         isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
         isVisited: false,
+        isWall: false,
         distance:
             row === START_NODE_ROW && column === START_NODE_COLUMN
                 ? 0
@@ -51,6 +53,19 @@ function Grid() {
         setGrid(newGrid);
     }, []);
 
+    function createWall(row: number, column: number) {
+        const newGrid = [...grid];
+        const node = newGrid[row][column];
+        node.isWall = !node.isWall;
+
+        if (!node.isStart && !node.isFinish) {
+            // This is not great, I am looking for another way
+            document.getElementById(`${node?.row}-${node?.column}`)!.className =
+                node.isWall ? 'node wall' : 'node';
+        }
+        setGrid(newGrid);
+    }
+
     function animateAlgorithm() {
         const visitedNodes = dijkstra(
             grid,
@@ -61,6 +76,7 @@ function Grid() {
             setTimeout(() => {
                 const node = visitedNodes![i];
                 if (!node?.isStart && !node?.isFinish) {
+                    // This is not great, I am looking for another way
                     document.getElementById(
                         `${node?.row}-${node?.column}`
                     )!.className = 'node visited';
@@ -80,6 +96,8 @@ function Grid() {
                             isStart={node.isStart}
                             isFinish={node.isFinish}
                             isVisited={node.isVisited}
+                            isWall={node.isWall}
+                            createWall={createWall}
                             key={index}
                         />
                     ))}

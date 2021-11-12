@@ -7,13 +7,24 @@ interface NodeProps {
     isStart: boolean;
     isFinish: boolean;
     isVisited: boolean;
+    isWall: boolean;
+    createWall: (row: number, column: number) => void;
 }
 
-function Node({ row, column, isStart, isFinish, isVisited }: NodeProps) {
+function Node({
+    row,
+    column,
+    isStart,
+    isFinish,
+    isVisited,
+    isWall,
+    createWall,
+}: NodeProps) {
     return (
         <div
             id={`${row}-${column}`}
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
+            onMouseDown={() => createWall(row, column)}
         />
     );
 }
