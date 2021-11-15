@@ -81,7 +81,7 @@ function Grid() {
             if (i === visitedNodes!.length) {
                 setTimeout(() => {
                     animateShortest();
-                }, 5 * i);
+                }, 10 * i);
                 return;
             }
             setTimeout(() => {
@@ -92,7 +92,7 @@ function Grid() {
                         `${node?.row}-${node?.column}`
                     )!.className = 'node visited';
                 }
-            }, 5 * i);
+            }, 10 * i);
         }
     }
 
