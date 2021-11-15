@@ -1,7 +1,7 @@
 .node {
     height: 30px;
     width: 30px;
-    border: 1px solid black;
+    border: 1px solid grey;
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
 }
@@ -12,11 +12,57 @@
     background-color: red;
 }
 .visited {
-    background-color: lightgrey;
+    animation-duration: 1.5s;
+    animation-name: visitedAnimation;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 .wall {
-    background-color: grey;
+    animation-duration: 0.5s;
+    animation-name: wallAnimation;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
 .shortest {
-    background-color: yellow;
+    animation-duration: 1.25s;
+    animation-name: shortestAnimation;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes visitedAnimation {
+    from {
+        background-color: white;
+    }
+    33% {
+        background-color: aquamarine;
+    }
+    to {
+        background-color: skyblue;
+    }
+}
+
+@keyframes shortestAnimation {
+    from {
+        background-color: skyblue;
+    }
+    25% {
+        background-color: white;
+    }
+    75% {
+        background-color: yellow;
+    }
+    to {
+        background-color: yellow;
+    }
+}
+
+@keyframes wallAnimation {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: rgb(99, 99, 99);
+        border: 1px solid rgb(99, 99, 99);
+    }
 }
