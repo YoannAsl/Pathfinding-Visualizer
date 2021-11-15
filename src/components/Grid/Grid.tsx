@@ -61,9 +61,9 @@ function Grid() {
     function toggleWall(row: number, column: number) {
         const newGrid = [...grid];
         const node = newGrid[row][column];
-        node.isWall = !node.isWall;
 
         if (!node.isStart && !node.isFinish) {
+            node.isWall = !node.isWall;
             // This is not great, I am looking for another way
             document.getElementById(`${node?.row}-${node?.column}`)!.className =
                 node.isWall ? 'node wall' : 'node';
