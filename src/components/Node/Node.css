@@ -24,7 +24,7 @@
     animation-timing-function: ease-out;
 }
 .shortest {
-    animation-duration: 1.25s;
+    animation-duration: 1s;
     animation-name: shortestAnimation;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
@@ -45,12 +45,6 @@
 @keyframes shortestAnimation {
     from {
         background-color: skyblue;
-    }
-    25% {
-        background-color: white;
-    }
-    75% {
-        background-color: yellow;
     }
     to {
         background-color: yellow;
