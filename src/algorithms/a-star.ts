@@ -14,6 +14,8 @@ export default function astar(
         const closestNode = unvisitedNodes.shift();
         if (closestNode?.isWall) continue;
 
+        if (closestNode?.fScore === Infinity) return visitedNodes;
+
         closestNode!.isVisited = true;
         visitedNodes.push(closestNode);
 
