@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Node from '../Node/Node';
 import dijkstra, { getShortestPath } from '../../algorithms/dijkstra';
+import astar from '../../algorithms/a-star';
 import './Grid.css';
 
 export interface NodeType {
@@ -12,6 +13,9 @@ export interface NodeType {
     isWall: boolean;
     distance: number;
     previousNode: NodeType | null;
+    gScore: number;
+    hScore: number;
+    fScore: number;
 }
 
 export type GridType = NodeType[][] | [];
@@ -34,6 +38,15 @@ function createNode(row: number, column: number) {
                 ? 0
                 : Infinity,
         previousNode: null,
+        gScore:
+            row === START_NODE_ROW && column === START_NODE_COLUMN
+                ? 0
+                : Infinity,
+        hScore: 0,
+        fScore:
+            row === START_NODE_ROW && column === START_NODE_COLUMN
+                ? 0
+                : Infinity,
     };
 }
 
@@ -72,28 +85,39 @@ function Grid() {
     }
 
     function animateAlgorithm() {
-        const visitedNodes = dijkstra(
+        const visitedNodes = astar(
             grid,
+            grid[START_NODE_ROW][START_NODE_COLUMN],
             grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
         );
-
-        for (let i = 0; i <= visitedNodes!.length; i++) {
-            if (i === visitedNodes!.length) {
-                setTimeout(() => {
-                    animateShortest();
-                }, 10 * i);
-                return;
-            }
-            setTimeout(() => {
-                const node = visitedNodes![i];
-                if (!node?.isStart && !node?.isFinish) {
-                    // This is not great, I am looking for another way
-                    document.getElementById(
-                        `${node?.row}-${node?.column}`
-                    )!.className = 'node visited';
-                }
-            }, 10 * i);
+        console.log(visitedNodes);
+        for (const node of visitedNodes!) {
+            document.getElementById(
+                `${node?.row}-${node?.column}`
+            )!.innerText = `${node!.fScore}`;
         }
+        // const visitedNodes = dijkstra(
+        //     grid,
+        //     grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+        // );
+
+        // for (let i = 0; i <= visitedNodes!.length; i++) {
+        //     if (i === visitedNodes!.length) {
+        //         setTimeout(() => {
+        //             animateShortest();
+        //         }, 10 * i);
+        //         return;
+        //     }
+        //     setTimeout(() => {
+        //         const node = visitedNodes![i];
+        //         if (!node?.isStart && !node?.isFinish) {
+        //             // This is not great, I am looking for another way
+        //             document.getElementById(
+        //                 `${node?.row}-${node?.column}`
+        //             )!.className = 'node visited';
+        //         }
+        //     }, 10 * i);
+        // }
     }
 
     function animateShortest() {
