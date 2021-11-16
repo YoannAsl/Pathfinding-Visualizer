@@ -7,7 +7,7 @@ export default function astar(
 ) {
     const unvisitedNodes = getAllNodes(grid);
     const visitedNodes: (NodeType | undefined)[] = [];
-    // console.log(visitedNodes);
+
     while (unvisitedNodes.length > 0) {
         unvisitedNodes.sort((a, b) => a.fScore - b.fScore);
 
@@ -46,8 +46,7 @@ function updateNeighbourDistance(
         neighbour.hScore = distanceToFinish;
         neighbour.fScore = distanceToStart + distanceToFinish;
 
-        // neighbour.distance = node.distance + 1;
-        // neighbour.previousNode = node;
+        neighbour.previousNode = node;
     }
 }
 
@@ -71,4 +70,14 @@ function getAllNodes(grid: GridType) {
         }
     }
     return nodes;
+}
+
+export function getShortestPath(finishNode: NodeType) {
+    let node = finishNode;
+    const shortestPath = [];
+    while (node.previousNode !== null) {
+        shortestPath.push(node);
+        node = node.previousNode;
+    }
+    return shortestPath;
 }

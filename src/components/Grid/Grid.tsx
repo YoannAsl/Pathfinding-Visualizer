@@ -90,34 +90,24 @@ function Grid() {
             grid[START_NODE_ROW][START_NODE_COLUMN],
             grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
         );
-        console.log(visitedNodes);
-        for (const node of visitedNodes!) {
-            document.getElementById(
-                `${node?.row}-${node?.column}`
-            )!.innerText = `${node!.fScore}`;
-        }
-        // const visitedNodes = dijkstra(
-        //     grid,
-        //     grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
-        // );
 
-        // for (let i = 0; i <= visitedNodes!.length; i++) {
-        //     if (i === visitedNodes!.length) {
-        //         setTimeout(() => {
-        //             animateShortest();
-        //         }, 10 * i);
-        //         return;
-        //     }
-        //     setTimeout(() => {
-        //         const node = visitedNodes![i];
-        //         if (!node?.isStart && !node?.isFinish) {
-        //             // This is not great, I am looking for another way
-        //             document.getElementById(
-        //                 `${node?.row}-${node?.column}`
-        //             )!.className = 'node visited';
-        //         }
-        //     }, 10 * i);
-        // }
+        for (let i = 0; i <= visitedNodes!.length; i++) {
+            if (i === visitedNodes!.length) {
+                setTimeout(() => {
+                    animateShortest();
+                }, 30 * i);
+                return;
+            }
+            setTimeout(() => {
+                const node = visitedNodes![i];
+                if (!node?.isStart && !node?.isFinish) {
+                    // This is not great, I am looking for another way
+                    document.getElementById(
+                        `${node?.row}-${node?.column}`
+                    )!.className = 'node visited';
+                }
+            }, 30 * i);
+        }
     }
 
     function animateShortest() {
@@ -133,7 +123,7 @@ function Grid() {
                         `${node?.row}-${node?.column}`
                     )!.className = 'node shortest';
                 }
-            }, 30 * i);
+            }, 20 * i);
         }
     }
 
