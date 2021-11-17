@@ -25,7 +25,11 @@ export default function astar(
     // console.log(visitedNodes);
 }
 
-function heuristic() {}
+function manhattanEuristic(node: NodeType, finishNode: NodeType) {
+    const dx = Math.abs(node.column - finishNode.column);
+    const dy = Math.abs(node.row - finishNode.row);
+    return dx + dy;
+}
 
 function updateNeighbourDistance(
     node: NodeType,
@@ -38,9 +42,7 @@ function updateNeighbourDistance(
         const distanceToStart =
             Math.abs(neighbour.row - startNode.row) +
             Math.abs(neighbour.column - startNode.column);
-        const distanceToFinish =
-            Math.abs(neighbour.row - finishNode.row) +
-            Math.abs(neighbour.column - finishNode.column);
+        const distanceToFinish = manhattanEuristic(neighbour, finishNode);
 
         neighbour.gScore = distanceToStart;
         neighbour.hScore = distanceToFinish;
