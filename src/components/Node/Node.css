@@ -1,6 +1,4 @@
 .node {
-    height: 30px;
-    width: 30px;
     border: 1px solid grey;
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
@@ -54,5 +52,24 @@
     to {
         background-color: rgb(99, 99, 99);
         border: 1px solid rgb(99, 99, 99);
+    }
+}
+
+@media (min-width: 961px) {
+    .node {
+        height: 20px;
+        width: 20px;
+    }
+}
+@media (min-width: 1080px) {
+    .node {
+        height: 30px;
+        width: 30px;
+    }
+}
+@media (min-width: 1920px) {
+    .node {
+        height: 30px;
+        width: 30px;
     }
 }
