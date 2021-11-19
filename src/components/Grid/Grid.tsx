@@ -4,6 +4,10 @@ import dijkstra, { getShortestPath } from '../../algorithms/dijkstra';
 import astar from '../../algorithms/a-star';
 import './Grid.css';
 
+interface GridProps {
+    selectedAlgorithm: string;
+}
+
 export interface NodeType {
     row: number;
     column: number;
@@ -50,7 +54,7 @@ function createNode(row: number, column: number) {
     };
 }
 
-function Grid() {
+function Grid({ selectedAlgorithm }: GridProps) {
     const [grid, setGrid] = useState<GridType>([]);
     const [isMousePressed, setIsMousePressed] = useState(false);
 
@@ -85,17 +89,32 @@ function Grid() {
     }
 
     function animateAlgorithm() {
-        const visitedNodes = astar(
-            grid,
-            grid[START_NODE_ROW][START_NODE_COLUMN],
-            grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
-        );
+        let visitedNodes: (NodeType | undefined)[] | undefined;
+        let animationsLength: number;
+
+        switch (selectedAlgorithm) {
+            case 'dijkstra':
+                visitedNodes = dijkstra(
+                    grid,
+                    grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+                );
+                animationsLength = 10;
+                break;
+            case 'astar':
+                visitedNodes = astar(
+                    grid,
+                    grid[START_NODE_ROW][START_NODE_COLUMN],
+                    grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
+                );
+                animationsLength = 30;
+                break;
+        }
 
         for (let i = 0; i <= visitedNodes!.length; i++) {
             if (i === visitedNodes!.length) {
                 setTimeout(() => {
                     animateShortest();
-                }, 30 * i);
+                }, animationsLength! * i);
                 return;
             }
             setTimeout(() => {
@@ -106,7 +125,7 @@ function Grid() {
                         `${node?.row}-${node?.column}`
                     )!.className = 'node visited';
                 }
-            }, 30 * i);
+            }, animationsLength! * i);
         }
     }
 
