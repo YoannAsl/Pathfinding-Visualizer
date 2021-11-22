@@ -57,13 +57,24 @@ function createNode(row: number, column: number) {
 function Grid({ selectedAlgorithm }: GridProps) {
     const [grid, setGrid] = useState<GridType>([]);
     const [isMousePressed, setIsMousePressed] = useState(false);
+    const newGridAfterWalls = [...grid];
 
     useEffect(() => {
         createNewGrid();
     }, []);
 
+    function onMouseDown(row: number, column: number) {
+        setIsMousePressed(true);
+        toggleWall(row, column);
+    }
+
     function onMouseEnter(row: number, column: number) {
         if (isMousePressed) toggleWall(row, column);
+    }
+
+    function onMouseUp() {
+        setIsMousePressed(false);
+        setGrid(newGridAfterWalls);
     }
 
     function toggleWall(row: number, column: number) {
@@ -77,7 +88,7 @@ function Grid({ selectedAlgorithm }: GridProps) {
                 `node-${node?.row}-${node?.column}`
             )!.className = node.isWall ? 'node wall' : 'node';
         }
-        setGrid(newGrid);
+        newGridAfterWalls[row][column] = node;
     }
 
     function animateAlgorithm() {

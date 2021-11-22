@@ -7,8 +7,9 @@ interface NodeProps {
     isStart: boolean;
     isFinish: boolean;
     onMouseEnter: (row: number, column: number) => void;
-    toggleWall: (row: number, column: number) => void;
-    setIsMousePressed: React.Dispatch<React.SetStateAction<boolean>>;
+    onMouseDown: (row: number, column: number) => void;
+    onMouseUp: () => void;
+    isVisited: boolean;
     isWall: boolean;
 }
 
@@ -18,23 +19,22 @@ function Node({
     isStart,
     isFinish,
     onMouseEnter,
-    toggleWall,
-    setIsMousePressed,
     isWall,
+    onMouseDown,
+    onMouseUp,
+    isVisited,
 }: NodeProps) {
-    function onMouseDown() {
-        setIsMousePressed(true);
-        toggleWall(row, column);
-    }
-
     return (
         <div
             id={`node-${row}-${column}`}
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
-            onMouseDown={() => onMouseDown()}
+            onMouseDown={() => onMouseDown(row, column)}
             onMouseEnter={() => onMouseEnter(row, column)}
-            onMouseUp={() => setIsMousePressed(false)}
-        />
+            onMouseUp={() => onMouseUp()}
+        >
+            {isWall ? 't' : ''}
+            {isVisited ? 'v' : ''}
+        </div>
     );
 }
 
