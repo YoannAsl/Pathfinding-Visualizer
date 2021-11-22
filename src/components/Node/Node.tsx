@@ -32,8 +32,8 @@ function Node({
             onMouseEnter={() => onMouseEnter(row, column)}
             onMouseUp={() => onMouseUp()}
         >
-            {isWall ? 't' : ''}
-            {isVisited ? 'v' : ''}
+            {/* {isWall ? 't' : ''}
+            {isVisited ? 'v' : ''} */}
         </div>
     );
 }
