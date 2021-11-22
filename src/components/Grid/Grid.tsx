@@ -73,8 +73,9 @@ function Grid({ selectedAlgorithm }: GridProps) {
         if (!node.isStart && !node.isFinish) {
             node.isWall = !node.isWall;
             // This is not great, I am looking for another way
-            document.getElementById(`${node?.row}-${node?.column}`)!.className =
-                node.isWall ? 'node wall' : 'node';
+            document.getElementById(
+                `node-${node?.row}-${node?.column}`
+            )!.className = node.isWall ? 'node wall' : 'node';
         }
         setGrid(newGrid);
     }
@@ -113,7 +114,7 @@ function Grid({ selectedAlgorithm }: GridProps) {
                 if (!node?.isStart && !node?.isFinish) {
                     // This is not great, I am looking for another way
                     document.getElementById(
-                        `${node?.row}-${node?.column}`
+                        `node-${node?.row}-${node?.column}`
                     )!.className = 'node visited';
                 }
             }, animationsLength! * i);
@@ -130,7 +131,7 @@ function Grid({ selectedAlgorithm }: GridProps) {
                 if (!node?.isStart && !node?.isFinish) {
                     // This is not great, I am looking for another way
                     document.getElementById(
-                        `${node?.row}-${node?.column}`
+                        `node-${node?.row}-${node?.column}`
                     )!.className = 'node shortest';
                 }
             }, 20 * i);
@@ -176,17 +177,19 @@ function Grid({ selectedAlgorithm }: GridProps) {
     return (
         <main>
             {grid.map((row, index) => (
-                <div className='row' key={index}>
-                    {row.map((node, index) => (
+                <div className='row' key={`row-${index}`}>
+                    {row.map((node) => (
                         <Node
+                            key={`node-${node.row}-${node.column}`}
                             row={node.row}
                             column={node.column}
                             isStart={node.isStart}
                             isFinish={node.isFinish}
                             onMouseEnter={onMouseEnter}
-                            toggleWall={toggleWall}
-                            setIsMousePressed={setIsMousePressed}
-                            key={index}
+                            onMouseDown={onMouseDown}
+                            onMouseUp={onMouseUp}
+                            isVisited={node.isVisited}
+                            isWall={node.isWall}
                         />
                     ))}
                 </div>

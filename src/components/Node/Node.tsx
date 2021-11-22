@@ -29,7 +29,7 @@ function Node({
 
     return (
         <div
-            id={`${row}-${column}`}
+            id={`node-${row}-${column}`}
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
             onMouseDown={() => onMouseDown()}
             onMouseEnter={() => onMouseEnter(row, column)}
