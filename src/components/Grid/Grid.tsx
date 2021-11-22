@@ -146,6 +146,41 @@ function Grid({ selectedAlgorithm }: GridProps) {
         }
     }
 
+    function resetGrid() {
+        const newGrid = [...grid];
+        for (const row of newGrid) {
+            for (const node of row) {
+                if (node.isWall) {
+                    node.isWall = false;
+
+                    document.getElementById(
+                        `${node?.row}-${node?.column}`
+                    )!.className = 'node';
+                }
+
+                if (node.isVisited) {
+                    node.isVisited = false;
+
+                    document.getElementById(
+                        `${node?.row}-${node?.column}`
+                    )!.className = 'node';
+
+                    if (node.isStart) {
+                        document.getElementById(
+                            `${node?.row}-${node?.column}`
+                        )!.className = 'node start';
+                    }
+
+                    if (node.isFinish) {
+                        document.getElementById(
+                            `${node?.row}-${node?.column}`
+                        )!.className = 'node finish';
+                    }
+                }
+            }
+        }
+        setGrid(newGrid);
+    }
     return (
         <main>
             {grid.map((row, index) => (
@@ -167,6 +202,7 @@ function Grid({ selectedAlgorithm }: GridProps) {
             <button onClick={() => animateAlgorithm()}>
                 Visualize Algorithm
             </button>
+            <button onClick={() => resetGrid()}>Reset grid</button>
         </main>
     );
 }

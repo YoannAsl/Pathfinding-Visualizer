@@ -9,6 +9,7 @@ interface NodeProps {
     onMouseEnter: (row: number, column: number) => void;
     toggleWall: (row: number, column: number) => void;
     setIsMousePressed: React.Dispatch<React.SetStateAction<boolean>>;
+    isWall: boolean;
 }
 
 function Node({
@@ -19,6 +20,7 @@ function Node({
     onMouseEnter,
     toggleWall,
     setIsMousePressed,
+    isWall,
 }: NodeProps) {
     function onMouseDown() {
         setIsMousePressed(true);
