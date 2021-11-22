@@ -59,16 +59,7 @@ function Grid({ selectedAlgorithm }: GridProps) {
     const [isMousePressed, setIsMousePressed] = useState(false);
 
     useEffect(() => {
-        const newGrid = [];
-        for (let row = 0; row < 25; row++) {
-            const currentRow = [];
-            for (let col = 0; col < 50; col++) {
-                const currentNode = createNode(row, col);
-                currentRow.push(currentNode);
-            }
-            newGrid.push(currentRow);
-        }
-        setGrid(newGrid);
+        createNewGrid();
     }, []);
 
     function onMouseEnter(row: number, column: number) {
@@ -147,40 +138,41 @@ function Grid({ selectedAlgorithm }: GridProps) {
     }
 
     function resetGrid() {
-        const newGrid = [...grid];
-        for (const row of newGrid) {
+        createNewGrid();
+        for (const row of grid) {
             for (const node of row) {
-                if (node.isWall) {
-                    node.isWall = false;
+                document.getElementById(
+                    `node-${node?.row}-${node?.column}`
+                )!.className = 'node';
 
+                if (node.isStart) {
                     document.getElementById(
-                        `${node?.row}-${node?.column}`
-                    )!.className = 'node';
+                        `node-${node?.row}-${node?.column}`
+                    )!.className = 'node start';
                 }
 
-                if (node.isVisited) {
-                    node.isVisited = false;
-
+                if (node.isFinish) {
                     document.getElementById(
-                        `${node?.row}-${node?.column}`
-                    )!.className = 'node';
-
-                    if (node.isStart) {
-                        document.getElementById(
-                            `${node?.row}-${node?.column}`
-                        )!.className = 'node start';
-                    }
-
-                    if (node.isFinish) {
-                        document.getElementById(
-                            `${node?.row}-${node?.column}`
-                        )!.className = 'node finish';
-                    }
+                        `node-${node?.row}-${node?.column}`
+                    )!.className = 'node finish';
                 }
             }
         }
+    }
+
+    function createNewGrid() {
+        const newGrid = [];
+        for (let row = 0; row < 25; row++) {
+            const currentRow = [];
+            for (let col = 0; col < 50; col++) {
+                const currentNode = createNode(row, col);
+                currentRow.push(currentNode);
+            }
+            newGrid.push(currentRow);
+        }
         setGrid(newGrid);
     }
+
     return (
         <main>
             {grid.map((row, index) => (
