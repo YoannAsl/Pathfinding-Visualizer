@@ -3,19 +3,23 @@ import { GridType, NodeType } from '../components/Grid/Grid';
 function dijkstra(grid: GridType, finishNode: NodeType) {
     const unvisitedNodes = getAllNodes(grid);
     const visitedNodes = [];
+    const newGrid = [...grid];
+
     while (unvisitedNodes.length > 0) {
         unvisitedNodes.sort((a, b) => a.distance - b.distance);
 
         const closestNode = unvisitedNodes.shift();
-        if (closestNode?.isWall) continue;
+        if (closestNode!.isWall) continue;
 
-        if (closestNode?.distance === Infinity) return visitedNodes;
+        if (closestNode!.distance === Infinity)
+            return { visitedNodes, newGrid };
 
+        newGrid[closestNode!.row][closestNode!.column].isVisited = true;
         closestNode!.isVisited = true;
         visitedNodes.push(closestNode);
 
-        if (closestNode === finishNode) return visitedNodes;
-        updateNeighbourDistance(closestNode!, grid);
+        if (closestNode === finishNode) return { visitedNodes, newGrid };
+        updateNeighbourDistance(closestNode!, newGrid);
     }
 }
 

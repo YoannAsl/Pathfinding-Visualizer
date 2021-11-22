@@ -5,6 +5,7 @@ export default function astar(
     startNode: NodeType,
     finishNode: NodeType
 ) {
+    const newGrid = [...grid];
     const unvisitedNodes = getAllNodes(grid);
     const visitedNodes: (NodeType | undefined)[] = [];
 
@@ -14,15 +15,16 @@ export default function astar(
         const closestNode = unvisitedNodes.shift();
         if (closestNode?.isWall) continue;
 
-        if (closestNode?.fScore === Infinity) return visitedNodes;
+        if (closestNode?.fScore === Infinity) return { visitedNodes, newGrid };
 
+        newGrid[closestNode!.row][closestNode!.column].isVisited = true;
         closestNode!.isVisited = true;
+
         visitedNodes.push(closestNode);
 
-        if (closestNode === finishNode) return visitedNodes;
-        updateNeighbourDistance(closestNode!, grid, startNode, finishNode);
+        if (closestNode === finishNode) return { visitedNodes, newGrid };
+        updateNeighbourDistance(closestNode!, newGrid, startNode, finishNode);
     }
-    // console.log(visitedNodes);
 }
 
 function manhattanEuristic(node: NodeType, finishNode: NodeType) {
