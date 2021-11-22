@@ -94,22 +94,29 @@ function Grid({ selectedAlgorithm }: GridProps) {
     function animateAlgorithm() {
         let visitedNodes: (NodeType | undefined)[] | undefined;
         let animationsLength: number;
+        let newGrid: GridType;
 
         switch (selectedAlgorithm) {
             case 'dijkstra':
-                visitedNodes = dijkstra(
+                const dijkstraResults = dijkstra(
                     grid,
                     grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
                 );
+                visitedNodes = dijkstraResults!.visitedNodes;
+                newGrid = dijkstraResults!.newGrid;
                 animationsLength = 10;
+                setGrid(newGrid);
                 break;
             case 'astar':
-                visitedNodes = astar(
+                const astarResults = astar(
                     grid,
                     grid[START_NODE_ROW][START_NODE_COLUMN],
                     grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
                 );
+                visitedNodes = astarResults!.visitedNodes;
+                newGrid = astarResults!.newGrid;
                 animationsLength = 30;
+                setGrid(newGrid);
                 break;
         }
 
