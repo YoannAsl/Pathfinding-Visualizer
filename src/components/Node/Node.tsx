@@ -19,9 +19,9 @@ function Node({
     isStart,
     isFinish,
     onMouseEnter,
-    isWall,
     onMouseDown,
     onMouseUp,
+    isWall,
     isVisited,
 }: NodeProps) {
     return (

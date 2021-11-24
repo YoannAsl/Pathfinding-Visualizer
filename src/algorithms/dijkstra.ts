@@ -1,4 +1,4 @@
-import { GridType, NodeType } from '../components/Grid/Grid';
+import { GridType, NodeType } from '../components/App/App';
 
 function dijkstra(grid: GridType, finishNode: NodeType) {
     const unvisitedNodes = getAllNodes(grid);
