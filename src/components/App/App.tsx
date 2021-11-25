@@ -51,6 +51,19 @@ function createNode(row: number, column: number) {
     };
 }
 
+function getNewGrid() {
+    const newGrid = [];
+    for (let row = 0; row < 25; row++) {
+        const currentRow = [];
+        for (let col = 0; col < 50; col++) {
+            const currentNode = createNode(row, col);
+            currentRow.push(currentNode);
+        }
+        newGrid.push(currentRow);
+    }
+    return newGrid;
+}
+
 function App() {
     const [selectedAlgorithm, setSelectedAlgorithm] = useState('dijkstra');
     const [grid, setGrid] = useState<GridType>([]);
@@ -58,7 +71,7 @@ function App() {
     const newGridAfterWalls = [...grid];
 
     useEffect(() => {
-        createNewGrid();
+        setGrid(getNewGrid());
     }, []);
 
     function onMouseDown(row: number, column: number) {
@@ -155,7 +168,6 @@ function App() {
     }
 
     function resetGrid() {
-        createNewGrid();
         for (const row of grid) {
             for (const node of row) {
                 document.getElementById(
@@ -175,15 +187,9 @@ function App() {
                 }
             }
         }
+        setGrid(getNewGrid());
     }
 
-    function createNewGrid() {
-        const newGrid = [];
-        for (let row = 0; row < 25; row++) {
-            const currentRow = [];
-            for (let col = 0; col < 50; col++) {
-                const currentNode = createNode(row, col);
-                currentRow.push(currentNode);
             }
             newGrid.push(currentRow);
         }
