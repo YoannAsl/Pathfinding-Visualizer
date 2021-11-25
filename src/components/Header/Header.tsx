@@ -1,10 +1,12 @@
 import React from 'react';
+import './Header.css';
 
 interface HeaderProps {
     selectedAlgorithm: string;
     setSelectedAlgorithm: any;
     animateAlgorithm(): void;
     resetGrid(): void;
+    resetPath(): void;
 }
 
 function Header({
@@ -12,6 +14,7 @@ function Header({
     setSelectedAlgorithm,
     animateAlgorithm,
     resetGrid,
+    resetPath,
 }: HeaderProps) {
     function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
         setSelectedAlgorithm(event.target.value);
@@ -27,6 +30,7 @@ function Header({
                 Visualize Algorithm
             </button>
             <button onClick={() => resetGrid()}>Reset grid</button>
+            <button onClick={() => resetPath()}>Reset path</button>
         </header>
     );
 }

@@ -190,8 +190,33 @@ function App() {
         setGrid(getNewGrid());
     }
 
+    function resetPath() {
+        const newGrid = getNewGrid();
+
+        for (const row of grid) {
+            for (const node of row) {
+                if (!node.isWall) {
+                    document.getElementById(
+                        `node-${node?.row}-${node?.column}`
+                    )!.className = 'node';
+                }
+
+                if (node.isStart) {
+                    document.getElementById(
+                        `node-${node?.row}-${node?.column}`
+                    )!.className = 'node start';
+                }
+
+                if (node.isFinish) {
+                    document.getElementById(
+                        `node-${node?.row}-${node?.column}`
+                    )!.className = 'node finish';
+                }
+
+                if (node.isWall) {
+                    newGrid[node.row][node.column].isWall = true;
+                }
             }
-            newGrid.push(currentRow);
         }
         setGrid(newGrid);
     }
@@ -203,6 +228,7 @@ function App() {
                 setSelectedAlgorithm={setSelectedAlgorithm}
                 animateAlgorithm={animateAlgorithm}
                 resetGrid={resetGrid}
+                resetPath={resetPath}
             />
             <Grid
                 grid={grid}
