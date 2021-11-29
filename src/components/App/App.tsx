@@ -23,8 +23,8 @@ export type GridType = NodeType[][] | [];
 
 const START_NODE_ROW = 8;
 const START_NODE_COLUMN = 5;
-const FINISH_NODE_ROW = 13;
-const FINISH_NODE_COLUMN = 34;
+const FINISH_NODE_ROW = 16;
+const FINISH_NODE_COLUMN = 39;
 
 function createNode(row: number, column: number) {
     return {
@@ -126,7 +126,7 @@ function App() {
                 );
                 visitedNodes = astarResults!.visitedNodes;
                 newGrid = astarResults!.newGrid;
-                animationsLength = 30;
+                animationsLength = 25;
                 setGrid(newGrid);
                 break;
         }
@@ -164,7 +164,7 @@ function App() {
                         `node-${node?.row}-${node?.column}`
                     )!.className = 'node shortest';
                 }
-            }, 20 * i);
+            }, 25 * i);
         }
     }
 
