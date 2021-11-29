@@ -104,7 +104,7 @@ function App() {
 
     function animateAlgorithm() {
         let visitedNodes: (NodeType | undefined)[] | undefined;
-        let animationsLength: number;
+        let animationDelay: number;
         let newGrid: GridType;
 
         switch (selectedAlgorithm) {
@@ -115,7 +115,7 @@ function App() {
                 );
                 visitedNodes = dijkstraResults!.visitedNodes;
                 newGrid = dijkstraResults!.newGrid;
-                animationsLength = 10;
+                animationDelay = 10;
                 setGrid(newGrid);
                 break;
             case 'astar':
@@ -126,7 +126,7 @@ function App() {
                 );
                 visitedNodes = astarResults!.visitedNodes;
                 newGrid = astarResults!.newGrid;
-                animationsLength = 25;
+                animationDelay = 25;
                 setGrid(newGrid);
                 break;
         }
@@ -135,7 +135,7 @@ function App() {
             if (i === visitedNodes!.length) {
                 setTimeout(() => {
                     animateShortest();
-                }, animationsLength! * i);
+                }, animationDelay! * i);
                 return;
             }
             setTimeout(() => {
@@ -146,7 +146,7 @@ function App() {
                         `node-${node?.row}-${node?.column}`
                     )!.className = 'node visited';
                 }
-            }, animationsLength! * i);
+            }, animationDelay! * i);
         }
     }
 
