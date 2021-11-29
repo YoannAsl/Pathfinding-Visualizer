@@ -153,7 +153,8 @@ function App() {
     function animateShortest() {
         const shortestPath = getShortestPath(
             grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
-        );
+        ).reverse();
+
         for (let i = 0; i < shortestPath!.length; i++) {
             setTimeout(() => {
                 const node = shortestPath![i];
