@@ -231,12 +231,26 @@ function App() {
                 resetGrid={resetGrid}
                 resetPath={resetPath}
             />
-            <Grid
-                grid={grid}
-                onMouseEnter={onMouseEnter}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
-            />
+            <Grid>
+                {grid.map((row, index) => (
+                    <div className='row' key={`row-${index}`}>
+                        {row.map((node) => (
+                            <Node
+                                key={`node-${node.row}-${node.column}`}
+                                row={node.row}
+                                column={node.column}
+                                isStart={node.isStart}
+                                isFinish={node.isFinish}
+                                onMouseEnter={onMouseEnter}
+                                onMouseDown={onMouseDown}
+                                onMouseUp={onMouseUp}
+                                isVisited={node.isVisited}
+                                isWall={node.isWall}
+                            />
+                        ))}
+                    </div>
+                ))}
+            </Grid>
         </div>
     );
 }
