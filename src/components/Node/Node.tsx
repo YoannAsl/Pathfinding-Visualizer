@@ -9,8 +9,9 @@ interface NodeProps {
     onMouseEnter: (row: number, column: number) => void;
     onMouseDown: (row: number, column: number) => void;
     onMouseUp: () => void;
-    isVisited: boolean;
-    isWall: boolean;
+    // Only used for development
+    isVisited?: boolean;
+    isWall?: boolean;
 }
 
 function Node({

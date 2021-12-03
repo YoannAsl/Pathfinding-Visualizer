@@ -35,11 +35,15 @@ function createNode(row: number, column: number) {
         isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
         isVisited: false,
         isWall: false,
+        previousNode: null,
+
+        // for dijkstra algorithm
         distance:
             row === START_NODE_ROW && column === START_NODE_COLUMN
                 ? 0
                 : Infinity,
-        previousNode: null,
+
+        // for a* algorithm
         gScore:
             row === START_NODE_ROW && column === START_NODE_COLUMN
                 ? 0
