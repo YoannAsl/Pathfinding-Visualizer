@@ -4,6 +4,7 @@ import dijkstra, { getShortestPath } from '../../algorithms/dijkstra';
 import astar from '../../algorithms/a-star';
 import Header from '../Header/Header';
 import Grid from '../Grid/Grid';
+import Node from '../Node/Node';
 
 export interface NodeType {
     row: number;
@@ -171,20 +172,18 @@ function App() {
     function resetGrid() {
         for (const row of grid) {
             for (const node of row) {
-                document.getElementById(
+                const nodeElement = document.getElementById(
                     `node-${node?.row}-${node?.column}`
-                )!.className = 'node';
+                );
+
+                nodeElement!.className = 'node';
 
                 if (node.isStart) {
-                    document.getElementById(
-                        `node-${node?.row}-${node?.column}`
-                    )!.className = 'node start';
+                    nodeElement!.className = 'node start';
                 }
 
                 if (node.isFinish) {
-                    document.getElementById(
-                        `node-${node?.row}-${node?.column}`
-                    )!.className = 'node finish';
+                    nodeElement!.className = 'node finish';
                 }
             }
         }
@@ -196,22 +195,20 @@ function App() {
 
         for (const row of grid) {
             for (const node of row) {
+                const nodeElement = document.getElementById(
+                    `node-${node?.row}-${node?.column}`
+                );
+
                 if (!node.isWall) {
-                    document.getElementById(
-                        `node-${node?.row}-${node?.column}`
-                    )!.className = 'node';
+                    nodeElement!.className = 'node';
                 }
 
                 if (node.isStart) {
-                    document.getElementById(
-                        `node-${node?.row}-${node?.column}`
-                    )!.className = 'node start';
+                    nodeElement!.className = 'node start';
                 }
 
                 if (node.isFinish) {
-                    document.getElementById(
-                        `node-${node?.row}-${node?.column}`
-                    )!.className = 'node finish';
+                    nodeElement!.className = 'node finish';
                 }
 
                 if (node.isWall) {
