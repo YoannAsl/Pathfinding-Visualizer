@@ -3,6 +3,8 @@
     box-sizing: border-box;
     margin: 0 -1px -1px 0;
     user-select: none;
+    height: 20px;
+    width: 20px;
 }
 
 .start {
@@ -56,19 +58,14 @@
     }
 }
 
-@media (min-width: 961px) {
+@media (min-width: 1025px) {
     .node {
-        height: 20px;
-        width: 20px;
+        height: 25px;
+        width: 25px;
     }
 }
-@media (min-width: 1080px) {
-    .node {
-        height: 30px;
-        width: 30px;
-    }
-}
-@media (min-width: 1920px) {
+
+@media (min-width: 1550px) {
     .node {
         height: 30px;
         width: 30px;
