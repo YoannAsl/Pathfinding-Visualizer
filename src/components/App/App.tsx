@@ -176,13 +176,8 @@ function App() {
 
                 nodeElement!.className = 'node';
 
-                if (node.isStart) {
-                    nodeElement!.className = 'node start';
-                }
-
-                if (node.isFinish) {
-                    nodeElement!.className = 'node finish';
-                }
+                if (node.isStart) nodeElement!.className = 'node start';
+                if (node.isFinish) nodeElement!.className = 'node finish';
             }
         }
         setGrid(getNewGrid());
@@ -197,21 +192,10 @@ function App() {
                     `node-${node!.row}-${node!.column}`
                 );
 
-                if (!node.isWall) {
-                    nodeElement!.className = 'node';
-                }
-
-                if (node.isStart) {
-                    nodeElement!.className = 'node start';
-                }
-
-                if (node.isFinish) {
-                    nodeElement!.className = 'node finish';
-                }
-
-                if (node.isWall) {
-                    newGrid[node.row][node.column].isWall = true;
-                }
+                if (!node.isWall) nodeElement!.className = 'node';
+                if (node.isStart) nodeElement!.className = 'node start';
+                if (node.isFinish) nodeElement!.className = 'node finish';
+                if (node.isWall) newGrid[node.row][node.column].isWall = true;
             }
         }
         setGrid(newGrid);
