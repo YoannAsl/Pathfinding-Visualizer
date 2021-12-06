@@ -13,9 +13,9 @@ export default function astar(
         unvisitedNodes.sort((a, b) => a.fScore - b.fScore);
 
         const closestNode = unvisitedNodes.shift();
-        if (closestNode?.isWall) continue;
+        if (closestNode!.isWall) continue;
 
-        if (closestNode?.fScore === Infinity) return { visitedNodes, newGrid };
+        if (closestNode!.fScore === Infinity) return { visitedNodes, newGrid };
 
         newGrid[closestNode!.row][closestNode!.column].isVisited = true;
         closestNode!.isVisited = true;

@@ -95,7 +95,7 @@ function App() {
             node.isWall = !node.isWall;
             // This is not great, I am looking for another way
             document.getElementById(
-                `node-${node?.row}-${node?.column}`
+                `node-${node!.row}-${node!.column}`
             )!.className = node.isWall ? 'node wall' : 'node';
         }
         newGridAfterWalls[row][column] = node;
@@ -139,10 +139,10 @@ function App() {
             }
             setTimeout(() => {
                 const node = visitedNodes![i];
-                if (!node?.isStart && !node?.isFinish) {
+                if (!node!.isStart && !node!.isFinish) {
                     // This is not great, I am looking for another way
                     document.getElementById(
-                        `node-${node?.row}-${node?.column}`
+                        `node-${node!.row}-${node!.column}`
                     )!.className = 'node visited';
                 }
             }, animationDelay! * i);
@@ -157,10 +157,10 @@ function App() {
         for (let i = 0; i < shortestPath!.length; i++) {
             setTimeout(() => {
                 const node = shortestPath![i];
-                if (!node?.isStart && !node?.isFinish) {
+                if (!node!.isStart && !node!.isFinish) {
                     // This is not great, I am looking for another way
                     document.getElementById(
-                        `node-${node?.row}-${node?.column}`
+                        `node-${node!.row}-${node!.column}`
                     )!.className = 'node shortest';
                 }
             }, 25 * i);
@@ -171,7 +171,7 @@ function App() {
         for (const row of grid) {
             for (const node of row) {
                 const nodeElement = document.getElementById(
-                    `node-${node?.row}-${node?.column}`
+                    `node-${node!.row}-${node!.column}`
                 );
 
                 nodeElement!.className = 'node';
@@ -194,7 +194,7 @@ function App() {
         for (const row of grid) {
             for (const node of row) {
                 const nodeElement = document.getElementById(
-                    `node-${node?.row}-${node?.column}`
+                    `node-${node!.row}-${node!.column}`
                 );
 
                 if (!node.isWall) {
