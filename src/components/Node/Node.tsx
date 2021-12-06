@@ -31,7 +31,7 @@ function Node({
             className={`node ${isStart ? 'start ' : isFinish ? 'finish ' : ''}`}
             onMouseDown={() => onMouseDown(row, column)}
             onMouseEnter={() => onMouseEnter(row, column)}
-            onMouseUp={() => onMouseUp()}
+            onMouseUp={onMouseUp}
         >
             {/* {isWall ? 't' : ''}
             {isVisited ? 'v' : ''} */}
