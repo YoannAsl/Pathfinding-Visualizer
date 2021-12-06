@@ -28,31 +28,25 @@ const FINISH_NODE_ROW = 16;
 const FINISH_NODE_COLUMN = 39;
 
 function createNode(row: number, column: number) {
+    const isStart = row === START_NODE_ROW && column === START_NODE_COLUMN;
+    const isFinish = row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN;
+
     return {
         row,
         column,
-        isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
-        isFinish: row === FINISH_NODE_ROW && column === FINISH_NODE_COLUMN,
+        isStart,
+        isFinish,
         isVisited: false,
         isWall: false,
         previousNode: null,
 
         // for dijkstra algorithm
-        distance:
-            row === START_NODE_ROW && column === START_NODE_COLUMN
-                ? 0
-                : Infinity,
+        distance: isStart ? 0 : Infinity,
 
         // for a* algorithm
-        gScore:
-            row === START_NODE_ROW && column === START_NODE_COLUMN
-                ? 0
-                : Infinity,
+        gScore: isStart ? 0 : Infinity,
         hScore: 0,
-        fScore:
-            row === START_NODE_ROW && column === START_NODE_COLUMN
-                ? 0
-                : Infinity,
+        fScore: isStart ? 0 : Infinity,
     };
 }
 
