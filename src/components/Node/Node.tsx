@@ -1,18 +1,6 @@
 import React from 'react';
 import './Node.css';
-
-interface NodeProps {
-    row: number;
-    column: number;
-    isStart: boolean;
-    isFinish: boolean;
-    onMouseEnter: (row: number, column: number) => void;
-    onMouseDown: (row: number, column: number) => void;
-    onMouseUp: () => void;
-    // Only used for development
-    isVisited?: boolean;
-    isWall?: boolean;
-}
+import { NodeProps } from '../../types';
 
 function Node({
     row,

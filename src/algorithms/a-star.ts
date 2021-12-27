@@ -1,4 +1,4 @@
-import { GridType, NodeType } from '../components/App/App';
+import { GridType, NodeType } from '../types';
 
 export default function astar(
     grid: GridType,

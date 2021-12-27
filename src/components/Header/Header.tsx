@@ -1,13 +1,6 @@
 import React from 'react';
 import './Header.css';
-
-interface HeaderProps {
-    selectedAlgorithm: string;
-    setSelectedAlgorithm: any;
-    animateAlgorithm(): void;
-    resetGrid(): void;
-    resetPath(): void;
-}
+import { HeaderProps } from '../../types';
 
 function Header({
     selectedAlgorithm,

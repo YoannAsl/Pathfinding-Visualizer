@@ -5,22 +5,7 @@ import astar from '../../algorithms/a-star';
 import Header from '../Header/Header';
 import Grid from '../Grid/Grid';
 import Node from '../Node/Node';
-
-export interface NodeType {
-    row: number;
-    column: number;
-    isStart: boolean;
-    isFinish: boolean;
-    isVisited: boolean;
-    isWall: boolean;
-    distance: number;
-    previousNode: NodeType | null;
-    gScore: number;
-    hScore: number;
-    fScore: number;
-}
-
-export type GridType = NodeType[][] | [];
+import { NodeType, GridType } from '../../types';
 
 const START_NODE_ROW = 8;
 const START_NODE_COLUMN = 5;
@@ -131,12 +116,14 @@ function App() {
         }
 
         for (let i = 0; i <= visitedNodes!.length; i++) {
+            // If we're at the last node, animate the shortest path
             if (i === visitedNodes!.length) {
                 setTimeout(() => {
                     animateShortest();
                 }, animationDelay! * i);
                 return;
             }
+            // Animate the visited nodes
             setTimeout(() => {
                 const node = visitedNodes![i];
                 if (!node!.isStart && !node!.isFinish) {
@@ -150,6 +137,7 @@ function App() {
     }
 
     function animateShortest() {
+        // We reverse to animate the path from start node to the finish node
         const shortestPath = getShortestPath(
             grid[FINISH_NODE_ROW][FINISH_NODE_COLUMN]
         ).reverse();

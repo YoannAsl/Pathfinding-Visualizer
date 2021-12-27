@@ -1,9 +1,6 @@
 import React from 'react';
 import './Grid.css';
-
-interface GridProps {
-    children: any;
-}
+import { GridProps } from '../../types';
 
 function Grid({ children }: GridProps) {
     return <main>{children}</main>;
