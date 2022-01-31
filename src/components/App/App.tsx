@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import dijkstra, { getShortestPath } from '../../algorithms/dijkstra';
-import astar from '../../algorithms/a-star';
-import Header from '../Header/Header';
-import Grid from '../Grid/Grid';
-import Node from '../Node/Node';
+import { dijkstra, getShortestPath } from '../../algorithms/dijkstra';
+import { astar } from '../../algorithms/a-star';
+import { Header } from '../Header/Header';
+import { Grid } from '../Grid/Grid';
+import { Node } from '../Node/Node';
 import { NodeType, GridType } from '../../types';
 
 const START_NODE_ROW = 8;
@@ -48,7 +48,7 @@ function getNewGrid() {
     return newGrid;
 }
 
-const App = () => {
+export const App = () => {
     const [selectedAlgorithm, setSelectedAlgorithm] = useState('dijkstra');
     const [grid, setGrid] = useState<GridType>([]);
     const [isMousePressed, setIsMousePressed] = useState(false);
@@ -221,5 +221,3 @@ const App = () => {
         </div>
     );
 };
-
-export default App;

@@ -1,6 +1,6 @@
 import { GridType, NodeType } from '../types';
 
-export default function astar(
+export function astar(
     grid: GridType,
     startNode: NodeType,
     finishNode: NodeType

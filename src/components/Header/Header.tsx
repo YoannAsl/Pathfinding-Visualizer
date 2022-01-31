@@ -9,7 +9,7 @@ interface HeaderProps {
     resetPath(): void;
 }
 
-const Header = ({
+export const Header = ({
     selectedAlgorithm,
     setSelectedAlgorithm,
     animateAlgorithm,
@@ -32,5 +32,3 @@ const Header = ({
         </header>
     );
 };
-
-export default Header;

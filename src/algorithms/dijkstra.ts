@@ -1,6 +1,6 @@
 import { GridType, NodeType } from '../types';
 
-function dijkstra(grid: GridType, finishNode: NodeType) {
+export function dijkstra(grid: GridType, finishNode: NodeType) {
     const unvisitedNodes = getAllNodes(grid);
     const visitedNodes = [];
     const newGrid = [...grid];
@@ -62,5 +62,3 @@ export function getShortestPath(finishNode: NodeType) {
     }
     return shortestPath;
 }
-
-export default dijkstra;

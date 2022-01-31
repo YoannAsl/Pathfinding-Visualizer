@@ -15,7 +15,7 @@ interface NodeProps {
     isWall?: boolean;
 }
 
-const Node = ({
+export const Node = ({
     row,
     column,
     isStart,
@@ -39,5 +39,3 @@ const Node = ({
         </div>
     );
 };
-
-export default Node;
