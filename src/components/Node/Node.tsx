@@ -15,7 +15,7 @@ interface NodeProps {
     isWall?: boolean;
 }
 
-function Node({
+const Node = ({
     row,
     column,
     isStart,
@@ -25,7 +25,7 @@ function Node({
     onMouseUp,
     isWall,
     isVisited,
-}: NodeProps) {
+}: NodeProps) => {
     return (
         <div
             id={`node-${row}-${column}`}
@@ -38,6 +38,6 @@ function Node({
             {isVisited ? 'v' : ''} */}
         </div>
     );
-}
+};
 
 export default Node;

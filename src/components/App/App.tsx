@@ -48,7 +48,7 @@ function getNewGrid() {
     return newGrid;
 }
 
-function App() {
+const App = () => {
     const [selectedAlgorithm, setSelectedAlgorithm] = useState('dijkstra');
     const [grid, setGrid] = useState<GridType>([]);
     const [isMousePressed, setIsMousePressed] = useState(false);
@@ -220,6 +220,6 @@ function App() {
             </Grid>
         </div>
     );
-}
+};
 
 export default App;

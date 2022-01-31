@@ -9,13 +9,13 @@ interface HeaderProps {
     resetPath(): void;
 }
 
-function Header({
+const Header = ({
     selectedAlgorithm,
     setSelectedAlgorithm,
     animateAlgorithm,
     resetGrid,
     resetPath,
-}: HeaderProps) {
+}: HeaderProps) => {
     function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
         setSelectedAlgorithm(event.target.value);
     }
@@ -31,6 +31,6 @@ function Header({
             <button onClick={resetPath}>Reset path</button>
         </header>
     );
-}
+};
 
 export default Header;
